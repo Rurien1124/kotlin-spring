@@ -46,3 +46,7 @@ kotlin {
 tasks.withType<Test> {
   useJUnitPlatform()
 }
+
+tasks.bootJar {
+  mainClass.set("io.github.rurien.MainApplication")
+}
