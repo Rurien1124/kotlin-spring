@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>${CONSOLE_LOG_CHARSET}</charset>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="allLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/${LOG_FILE}.log</file>
+
+    <encoder>
+      <charset>${FILE_LOG_CHARSET}</charset>
+      <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_PATH}/backup/${LOG_FILE}_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE}</maxFileSize>
+      <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY}</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/${LOG_FILE}_error.log</file>
+
+    <encoder>
+      <charset>${FILE_LOG_CHARSET}</charset>
+      <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_PATH}/backup/${LOG_FILE}_error_%d{yyyy-MM-dd}.log</FileNamePattern>
+      <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY}</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="warnLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_PATH}/${LOG_FILE}_warn.log</file>
+
+    <encoder>
+      <charset>${FILE_LOG_CHARSET}</charset>
+      <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>WARN</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_PATH}/backup/${LOG_FILE}_warn_%d{yyyy-MM-dd}.log</FileNamePattern>
+      <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY}</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <springProfile name="local | test">
+    <root>
+      <appender-ref ref="stdout"/>
+    </root>
+  </springProfile>
+
+  <root>
+    <appender-ref ref="allLog"/>
+    <appender-ref ref="errorLog"/>
+    <appender-ref ref="warnLog"/>
+  </root>
+</configuration>
