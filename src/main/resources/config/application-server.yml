@@ -1,0 +1,40 @@
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  error:
+    whitelabel:
+      enabled: false
+  max-http-request-header-size: 2KB
+  tomcat:
+    max-http-form-post-size: 100KB
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-server
+  session:
+    timeout: 10m
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 10m
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test-server
+  session:
+    timeout: 10m
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 1m

@@ -1,0 +1,15 @@
+spring:
+  web:
+    resources:
+      chain:
+        enabled: true
+        strategy:
+          content:
+            enabled: true
+            paths: /**
+      cache:
+        cachecontrol:
+          max-age: 1d
+          cache-public: true
+          no-cache: false
+          no-store: false
