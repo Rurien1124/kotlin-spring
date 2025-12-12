@@ -1,0 +1,59 @@
+logging:
+  config: classpath:logback-spring.xml
+  charset:
+    console: UTF-8
+    file: UTF-8
+  pattern:
+    console: '[%d{HH:mm:ss.SSS}][%highlight(%-5level)][%-30thread{30}][%-60logger{60}:%-4L][%X{traceId}-%X{spanId}] - %m%n'
+    file: '[%d][%-5level][%t][%-10logger{10}:%L][%X{traceId}-%X{spanId}] - %m%n'
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 1GB
+
+---
+spring:
+  config:
+    activate:
+      on-profile: trace-logging
+
+logging:
+  level:
+    root: trace
+---
+spring:
+  config:
+    activate:
+      on-profile: debug-logging
+
+logging:
+  level:
+    root: debug
+---
+spring:
+  config:
+    activate:
+      on-profile: info-logging
+
+logging:
+  level:
+    root: info
+---
+spring:
+  config:
+    activate:
+      on-profile: local-server
+
+logging:
+  file:
+    path: ./logs
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test-server
+
+logging:
+  file:
+    name: none

@@ -1,1 +1,14 @@
-spring.application.name=kotlin-spring
+spring:
+  application:
+    name: kotlin-spring
+
+  config:
+    import:
+      - classpath:config/application-profiles.yml
+      - classpath:config/application-logging.yml
+      - classpath:config/application-server.yml
+      - classpath:config/application-web.yml
+
+  logging:
+    file:
+      name: kotlin-spring

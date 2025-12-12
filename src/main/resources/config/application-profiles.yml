@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    group:
+      'local':
+        - local-server
+        - debug-logging
+      'test':
+        - local-server
+        - debug-logging
