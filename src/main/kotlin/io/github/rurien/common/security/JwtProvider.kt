@@ -6,16 +6,18 @@ import io.jsonwebtoken.security.Keys
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 import java.time.Duration
 import java.time.LocalDateTime
 import java.time.ZoneId
 import javax.crypto.SecretKey
 
+@Component
 class JwtProvider(
   private val jwtProperties: JwtProperties,
 ) {
-  companion object {
+  private companion object {
     const val CLAIMS_TYPE = "CLIENT"
     const val CLAIMS_ROLE = "PUBLIC"
   }
