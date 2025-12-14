@@ -30,6 +30,7 @@ dependencies {
   // TODO: Toml 정리 필요
   implementation("org.springframework.boot:spring-boot-starter-webmvc")
   implementation("org.springframework.boot:spring-boot-starter-security")
+  implementation("org.springframework.security:spring-security-config")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("tools.jackson.module:jackson-module-kotlin")
   implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
