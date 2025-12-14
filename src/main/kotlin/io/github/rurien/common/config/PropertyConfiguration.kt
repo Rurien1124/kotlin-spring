@@ -4,5 +4,5 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.stereotype.Component
 
 @Component
-@ConfigurationPropertiesScan
+@ConfigurationPropertiesScan(basePackages = ["com.github.rurien.common.properties"])
 class PropertyConfiguration
