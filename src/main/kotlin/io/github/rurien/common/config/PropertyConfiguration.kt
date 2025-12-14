@@ -1,8 +1,8 @@
 package io.github.rurien.common.config
 
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
-import org.springframework.stereotype.Component
+import org.springframework.context.annotation.Configuration
 
-@Component
-@ConfigurationPropertiesScan
+@Configuration
+@ConfigurationPropertiesScan(basePackages = ["io.github.rurien.common.property"])
 class PropertyConfiguration

@@ -8,6 +8,7 @@ spring:
       - classpath:config/application-logging.yml
       - classpath:config/application-server.yml
       - classpath:config/application-web.yml
+      - classpath:config/application-jwt.yml
 
   logging:
     file:

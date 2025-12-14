@@ -1,9 +1,11 @@
 package io.github.rurien.common.constant
 
-abstract class Paths {
-  abstract class HealthCheck {
-    companion object {
-      const val HEALTH = "/health"
-    }
+object Paths {
+  object HealthCheck {
+    const val BASE = "/health"
+  }
+
+  object Token {
+    const val BASE = "/token"
   }
 }
