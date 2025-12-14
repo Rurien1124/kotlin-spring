@@ -27,15 +27,23 @@ repositories {
 }
 
 dependencies {
+  // TODO: Toml 정리 필요
   implementation("org.springframework.boot:spring-boot-starter-webmvc")
+  implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("tools.jackson.module:jackson-module-kotlin")
   implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+  implementation("io.jsonwebtoken:jjwt-api:0.13.0")
+
+  runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
+  runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.13.0")
 
   developmentOnly("org.springframework.boot:spring-boot-devtools")
 
   annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+  testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
