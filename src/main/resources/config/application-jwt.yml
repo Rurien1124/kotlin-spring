@@ -1,5 +1,5 @@
 jwt:
-  secret: ${JWT_SECRET:localJwtSecretKey}
+  secret: ${JWT_SECRET:localJwtSecretKeyWithLongLongStringValue}
   access-token:
     expiration: 1h
   refresh-token:
