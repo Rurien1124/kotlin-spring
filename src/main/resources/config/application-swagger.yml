@@ -1,0 +1,29 @@
+
+---
+spring:
+  config:
+    activate:
+      on-profile: enabled-swagger
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: disabled-swagger
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

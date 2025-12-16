@@ -28,6 +28,16 @@ class SecurityConfiguration(
         "http://myfrontend.com",
       )
 
+    private val ALLOWED_GET_PATHS =
+      arrayOf(
+        "/swagger-ui/**",
+        "/v3/api-docs/**",
+      )
+    private val ALLOWED_POST_PATHS =
+      arrayOf(
+        "/token",
+      )
+
     private val ALLOWED_METHODS =
       listOf(
         HttpMethod.GET.name(),
@@ -64,7 +74,17 @@ class SecurityConfiguration(
         it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       }
       authorizeHttpRequests {
-        it.anyRequest().permitAll()
+        it
+          .requestMatchers(
+            HttpMethod.GET,
+            *ALLOWED_GET_PATHS,
+          ).permitAll()
+          .requestMatchers(
+            HttpMethod.POST,
+            *ALLOWED_POST_PATHS,
+          ).permitAll()
+          .anyRequest()
+          .authenticated()
       }
       addFilterBefore(
         jwtAuthenticationFilter,

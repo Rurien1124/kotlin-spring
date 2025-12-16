@@ -3,10 +3,10 @@ kotlin = "2.2.21"
 spring-boot = "4.0.0"
 spring-dependency-management = "1.1.7"
 ktlint = "14.0.1"
-java = "21"
 
 kotlin-logging = "3.0.5"
 jjwt = "0.13.0"
+springdoc-openapi = "3.0.0"
 
 [libraries]
 # Spring Boot
@@ -19,6 +19,9 @@ spring-boot-webmvc-test = { module = "org.springframework.boot:spring-boot-start
 
 # Spring Security
 spring-security-config = { module = "org.springframework.security:spring-security-config" }
+
+#Springdoc
+springdoc-openapi-webmvc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi"}
 
 # Kotlin
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
@@ -43,6 +46,10 @@ spring-boot-web = [
   "spring-boot-webmvc",
   "spring-boot-security",
   "spring-security-config"
+]
+
+springdoc = [
+  "springdoc-openapi-webmvc"
 ]
 
 kotlin-core = [
