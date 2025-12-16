@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
   implementation(libs.bundles.spring.boot.web)
+  implementation(libs.bundles.springdoc)
   implementation(libs.bundles.kotlin.core)
   implementation(libs.bundles.serialization)
   implementation(libs.bundles.logging)
