@@ -1,6 +1,7 @@
 package io.github.rurien.common.security
 
 import io.github.rurien.common.property.JwtProperties
+import io.github.rurien.model.Jwt
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -27,29 +28,35 @@ class JwtProvider(
 
   private val accessTokenExpiration: Duration = jwtProperties.accessToken.expiration
 
-  fun create(): String {
+  fun create(): Jwt {
     val now = LocalDateTime.now()
     val issuedAt =
       now
         .atZone(ZoneId.systemDefault())
         .toInstant()
         .epochSecond
-    val expirationTime =
+    val expiresAt =
       now
         .plus(accessTokenExpiration)
         .atZone(ZoneId.systemDefault())
         .toInstant()
         .epochSecond
 
-    return Jwts
-      .builder()
-      .subject("client")
-      .claim("type", CLAIMS_TYPE)
-      .claim("role", CLAIMS_ROLE)
-      .claim("iat", issuedAt)
-      .claim("exp", expirationTime)
-      .signWith(signingKey)
-      .compact()
+    val jwt =
+      Jwts
+        .builder()
+        .subject("client")
+        .claim("type", CLAIMS_TYPE)
+        .claim("role", CLAIMS_ROLE)
+        .claim("iat", issuedAt)
+        .claim("exp", expiresAt)
+        .signWith(signingKey)
+        .compact()
+
+    return Jwt(
+      jwt = jwt,
+      expiresAt = expiresAt.toString(),
+    )
   }
 
   fun validate(jwt: String): Boolean =
