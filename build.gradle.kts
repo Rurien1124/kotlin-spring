@@ -6,8 +6,8 @@ plugins {
   id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
 }
 
-group = "org.example"
-version = "0.0.1-SNAPSHOT"
+group = "io.github.rurien"
+version = "0.0.0.1"
 description = "kotlin-spring"
 
 java {
@@ -27,28 +27,20 @@ repositories {
 }
 
 dependencies {
-  // TODO: Toml 정리 필요
-  implementation("org.springframework.boot:spring-boot-starter-webmvc")
-  implementation("org.springframework.boot:spring-boot-starter-security")
-  implementation("org.springframework.security:spring-security-config")
-  implementation("org.jetbrains.kotlin:kotlin-reflect")
-  implementation("tools.jackson.module:jackson-module-kotlin")
-  implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-  implementation("io.jsonwebtoken:jjwt-api:0.13.0")
+  implementation(libs.bundles.spring.boot.web)
+  implementation(libs.bundles.kotlin.core)
+  implementation(libs.bundles.serialization)
+  implementation(libs.bundles.logging)
+  implementation(libs.bundles.jwt)
 
-  runtimeOnly("io.jsonwebtoken:jjwt-impl:0.13.0")
-  runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.13.0")
+  runtimeOnly(libs.jjwt.impl)
+  runtimeOnly(libs.jjwt.jackson)
 
-  developmentOnly("org.springframework.boot:spring-boot-devtools")
+  developmentOnly(libs.spring.boot.devtools)
 
-  annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+  annotationProcessor(libs.spring.boot.config.processor)
 
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
-  testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
-  testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  testImplementation(libs.bundles.spring.boot.test)
 }
 
 kotlin {
