@@ -1,9 +1,11 @@
 package io.github.rurien.controller
 
 import io.github.rurien.common.constant.Paths
-import io.github.rurien.model.Document
+import io.github.rurien.model.DocumentResponse
 import io.github.rurien.service.DocumentService
 import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestPart
@@ -21,8 +23,13 @@ class DocumentController(
   )
   fun upload(
     @RequestPart("file") file: MultipartFile,
-  ): Document =
-    Document(
-      texts = documentService.extractText(file),
-    )
+  ): DocumentResponse = documentService.upload(file)
+
+  @GetMapping(
+    value = [Paths.Document.GET],
+    produces = [MediaType.APPLICATION_JSON_VALUE],
+  )
+  fun find(
+    @PathVariable documentId: String,
+  ): DocumentResponse = documentService.find(documentId)
 }

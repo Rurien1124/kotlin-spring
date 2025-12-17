@@ -11,5 +11,7 @@ object Paths {
 
   object Document {
     const val BASE = "/document"
+
+    const val GET = "/{documentId}"
   }
 }
