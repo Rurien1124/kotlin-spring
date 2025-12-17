@@ -2,6 +2,8 @@ package io.github.rurien.service
 
 import io.github.rurien.common.exception.NonTextDocumentException
 import io.github.rurien.common.exception.UnsupportedDocumentException
+import io.github.rurien.model.DocumentResponse
+import io.github.rurien.repository.DocumentRepository
 import io.github.rurien.support.DocumentTextExtractor
 import io.github.rurien.support.PrivacySanitizer
 import io.github.rurien.support.TextChunker
@@ -10,11 +12,26 @@ import org.springframework.web.multipart.MultipartFile
 
 @Service
 class DocumentService(
+  private val documentRepository: DocumentRepository,
   private val extractors: List<DocumentTextExtractor>,
   private val privacySanitizer: PrivacySanitizer,
   private val textChunker: TextChunker,
 ) {
-  fun extractText(file: MultipartFile): List<String> {
+  fun upload(file: MultipartFile): DocumentResponse =
+    extractText(file).let { texts ->
+      DocumentResponse(
+        documentId = saveText(texts),
+        texts = texts,
+      )
+    }
+
+  fun find(documentId: String): DocumentResponse =
+    DocumentResponse(
+      documentId = documentId,
+      texts = documentRepository.find(documentId),
+    )
+
+  private fun extractText(file: MultipartFile): List<String> {
     val extractor =
       extractors.firstOrNull { it.supports(file.contentType.orEmpty()) }
         ?: throw UnsupportedDocumentException()
@@ -28,4 +45,6 @@ class DocumentService(
         }
       }.let(textChunker::chunk)
   }
+
+  private fun saveText(text: List<String>): String = documentRepository.save(text)
 }
