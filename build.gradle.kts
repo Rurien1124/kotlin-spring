@@ -31,6 +31,7 @@ dependencies {
   implementation(libs.bundles.springdoc)
   implementation(libs.bundles.kotlin.core)
   implementation(libs.bundles.serialization)
+  implementation(libs.bundles.document)
   implementation(libs.bundles.logging)
   implementation(libs.bundles.jwt)
 

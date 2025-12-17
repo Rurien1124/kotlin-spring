@@ -8,4 +8,8 @@ object Paths {
   object Token {
     const val BASE = "/token"
   }
+
+  object Document {
+    const val BASE = "/document"
+  }
 }
