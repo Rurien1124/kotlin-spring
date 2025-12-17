@@ -23,6 +23,6 @@ class DocumentController(
     @RequestPart("file") file: MultipartFile,
   ): Document =
     Document(
-      text = documentService.extractText(file),
+      texts = documentService.extractText(file),
     )
 }
