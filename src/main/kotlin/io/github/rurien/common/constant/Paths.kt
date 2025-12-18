@@ -14,4 +14,10 @@ object Paths {
 
     const val GET = "/{documentId}"
   }
+
+  object Llm {
+    const val BASE = "/llm"
+
+    const val POST_QUESTION = "/{documentId}/question"
+  }
 }
