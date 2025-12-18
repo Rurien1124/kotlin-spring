@@ -31,5 +31,9 @@ class DocumentController(
   )
   fun find(
     @PathVariable documentId: String,
-  ): DocumentResponse = documentService.find(documentId)
+  ): DocumentResponse =
+    DocumentResponse(
+      documentId = documentId,
+      texts = documentService.find(documentId),
+    )
 }
