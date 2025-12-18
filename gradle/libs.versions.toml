@@ -8,7 +8,7 @@ kotlin-logging = "3.0.5"
 jjwt = "0.13.0"
 springdoc-openapi = "3.0.0"
 pdfbox = "2.0.31"
-gemini = "0.9.0"
+gemini = "1.0.0"
 
 [libraries]
 # Spring Boot
@@ -44,7 +44,7 @@ jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
 jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
 
 # LLM
-gemini = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "gemini" }
+gemini = { module = "com.google.genai:google-genai", version.ref = "gemini" }
 
 # Test runtime
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
