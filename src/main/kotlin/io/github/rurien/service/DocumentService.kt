@@ -25,11 +25,7 @@ class DocumentService(
       )
     }
 
-  fun find(documentId: String): DocumentResponse =
-    DocumentResponse(
-      documentId = documentId,
-      texts = documentRepository.find(documentId),
-    )
+  fun find(documentId: String): List<String> = documentRepository.find(documentId)
 
   private fun extractText(file: MultipartFile): List<String> {
     val extractor =

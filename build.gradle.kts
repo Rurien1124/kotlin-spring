@@ -34,6 +34,7 @@ dependencies {
   implementation(libs.bundles.document)
   implementation(libs.bundles.logging)
   implementation(libs.bundles.jwt)
+  implementation(libs.bundles.llm)
 
   runtimeOnly(libs.jjwt.impl)
   runtimeOnly(libs.jjwt.jackson)

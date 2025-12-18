@@ -8,6 +8,7 @@ kotlin-logging = "3.0.5"
 jjwt = "0.13.0"
 springdoc-openapi = "3.0.0"
 pdfbox = "2.0.31"
+gemini = "1.0.0"
 
 [libraries]
 # Spring Boot
@@ -22,7 +23,7 @@ spring-boot-webmvc-test = { module = "org.springframework.boot:spring-boot-start
 spring-security-config = { module = "org.springframework.security:spring-security-config" }
 
 #Springdoc
-springdoc-openapi-webmvc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi"}
+springdoc-openapi-webmvc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi" }
 
 # Kotlin
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
@@ -32,7 +33,7 @@ kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 
 # Document
-pdfbox = {module = "org.apache.pdfbox:pdfbox", version.ref="pdfbox"}
+pdfbox = { module = "org.apache.pdfbox:pdfbox", version.ref = "pdfbox" }
 
 # Logging
 kotlin-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "kotlin-logging" }
@@ -41,6 +42,9 @@ kotlin-logging = { module = "io.github.microutils:kotlin-logging-jvm", version.r
 jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
 jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
 jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+# LLM
+gemini = { module = "com.google.genai:google-genai", version.ref = "gemini" }
 
 # Test runtime
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
@@ -74,6 +78,10 @@ logging = [
 
 jwt = [
   "jjwt-api"
+]
+
+llm = [
+  "gemini"
 ]
 
 spring-boot-test = [
