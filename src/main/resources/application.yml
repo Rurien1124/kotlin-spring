@@ -10,6 +10,7 @@ spring:
       - classpath:config/application-web.yml
       - classpath:config/application-jwt.yml
       - classpath:config/application-swagger.yml
+      - classpath:config/application-llm.yml
 
   logging:
     file:
