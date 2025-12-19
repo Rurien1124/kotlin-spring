@@ -6,15 +6,18 @@ import org.springframework.stereotype.Service
 @Service
 class LlmService(
   private val geminiCommunicator: GeminiCommunicator,
-  private val documentService: DocumentService,
 ) {
+  fun summary(chunks: List<String>): String =
+    geminiCommunicator
+      .summary(chunks)
+
   fun ask(
-    documentId: String,
+    context: String,
     question: String,
   ): String =
     geminiCommunicator
       .ask(
-        chunks = documentService.find(documentId),
+        context = context,
         question = question,
       )
 }
