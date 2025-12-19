@@ -36,7 +36,8 @@ class GeminiCommunicator(
   override fun summary(chunks: List<String>): String =
     generateContent(
       prompt = buildPrompt(SUMMARY_PROMPT, chunks.toContext()),
-      geminiSummaryContentConfig,
+      model = geminiProperties.models.flash,
+      generateContentConfig = geminiSummaryContentConfig,
     )
 
   override fun ask(
@@ -45,16 +46,18 @@ class GeminiCommunicator(
   ): String =
     generateContent(
       prompt = buildPrompt(ASK_PROMPT, context, question),
-      geminiAskContentConfig,
+      model = geminiProperties.models.flashLite,
+      generateContentConfig = geminiAskContentConfig,
     )
 
   private fun generateContent(
     prompt: String,
+    model: String,
     generateContentConfig: GenerateContentConfig,
   ): String =
     geminiClient.models
       .generateContent(
-        geminiProperties.model,
+        model,
         prompt,
         generateContentConfig,
       ).text()

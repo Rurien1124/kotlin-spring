@@ -5,5 +5,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties(prefix = "gemini.api")
 data class GeminiProperties(
   val key: String,
-  val model: String,
+  val models: GeminiModels,
+)
+
+data class GeminiModels(
+  val flash: String,
+  val flashLite: String,
 )
