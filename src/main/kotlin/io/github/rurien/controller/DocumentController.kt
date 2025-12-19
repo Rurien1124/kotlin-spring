@@ -34,6 +34,6 @@ class DocumentController(
   ): DocumentResponse =
     DocumentResponse(
       documentId = documentId,
-      texts = documentService.find(documentId),
+      text = documentService.find(documentId),
     )
 }

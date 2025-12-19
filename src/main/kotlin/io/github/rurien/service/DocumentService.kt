@@ -13,19 +13,31 @@ import org.springframework.web.multipart.MultipartFile
 @Service
 class DocumentService(
   private val documentRepository: DocumentRepository,
+  private val llmService: LlmService,
   private val extractors: List<DocumentTextExtractor>,
   private val privacySanitizer: PrivacySanitizer,
   private val textChunker: TextChunker,
 ) {
   fun upload(file: MultipartFile): DocumentResponse =
-    extractText(file).let { texts ->
-      DocumentResponse(
-        documentId = saveText(texts),
-        texts = texts,
-      )
-    }
+    extractText(file)
+      .let { chunks -> llmService.summary(chunks) }
+      .let { context ->
+        DocumentResponse(
+          documentId = saveText(context),
+          text = context,
+        )
+      }
 
-  fun find(documentId: String): List<String> = documentRepository.find(documentId)
+  fun find(documentId: String): String = documentRepository.find(documentId)
+
+  fun ask(
+    documentId: String,
+    question: String,
+  ): String =
+    find(documentId)
+      .let { context ->
+        llmService.ask(context, question)
+      }
 
   private fun extractText(file: MultipartFile): List<String> {
     val extractor =
@@ -42,5 +54,5 @@ class DocumentService(
       }.let(textChunker::chunk)
   }
 
-  private fun saveText(text: List<String>): String = documentRepository.save(text)
+  private fun saveText(text: String): String = documentRepository.save(text)
 }
