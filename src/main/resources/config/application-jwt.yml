@@ -1,4 +1,5 @@
 jwt:
+  enabled: false
   secret: ${JWT_SECRET:localJwtSecretKeyWithLongLongStringValue}
   access-token:
     expiration: 1h

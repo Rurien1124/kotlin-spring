@@ -5,6 +5,7 @@ import java.time.Duration
 
 @ConfigurationProperties(prefix = "jwt")
 data class JwtProperties(
+  val enabled: Boolean,
   val secret: String,
   val accessToken: AccessToken,
   val refreshToken: RefreshToken,
