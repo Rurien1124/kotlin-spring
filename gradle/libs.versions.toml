@@ -16,6 +16,7 @@ spring-boot-webmvc = { module = "org.springframework.boot:spring-boot-starter-we
 spring-boot-security = { module = "org.springframework.boot:spring-boot-starter-security" }
 spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
 spring-boot-config-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
+spring-boot-webclient = { module = "org.springframework.boot:spring-boot-starter-webclient" }
 spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-boot-webmvc-test = { module = "org.springframework.boot:spring-boot-starter-webmvc-test" }
 
@@ -53,7 +54,8 @@ junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher
 spring-boot-web = [
   "spring-boot-webmvc",
   "spring-boot-security",
-  "spring-security-config"
+  "spring-security-config",
+  "spring-boot-webclient"
 ]
 
 springdoc = [
