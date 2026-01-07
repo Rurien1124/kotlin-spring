@@ -1,0 +1,11 @@
+open-router:
+  api:
+    base-url: https://openrouter.ai/api/v1
+    http:
+      timeout:
+        connect-ms: 3000
+        response-ms: 30000
+
+      retry:
+        max-attempts: 2
+        backoff-ms: 500
