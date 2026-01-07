@@ -2,7 +2,7 @@ package io.github.rurien.common.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "gemini.api")
+@ConfigurationProperties(prefix = "gemini")
 data class GeminiProperties(
   val key: String,
   val models: GeminiModels,
