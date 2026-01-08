@@ -1,21 +1,21 @@
 package io.github.rurien.service
 
-import io.github.rurien.communication.llm.GeminiCommunicator
+import io.github.rurien.communication.llm.OpenRouterCommunicator
 import org.springframework.stereotype.Service
 
 @Service
 class LlmService(
-  private val geminiCommunicator: GeminiCommunicator,
+  private val openRouterCommunicator: OpenRouterCommunicator,
 ) {
   fun summary(chunks: List<String>): String =
-    geminiCommunicator
+    openRouterCommunicator
       .summary(chunks)
 
   fun ask(
     context: String,
     question: String,
   ): String =
-    geminiCommunicator
+    openRouterCommunicator
       .ask(
         context = context,
         question = question,
