@@ -20,10 +20,14 @@ class OpenRouterWebClientConfig(
   fun openRouterWebClient(
     builder: WebClient.Builder,
     openRouterAuthFilter: ExchangeFilterFunction,
+    openRouterRequestLoggingFilter: ExchangeFilterFunction,
+    openRouterResponseLoggingFilter: ExchangeFilterFunction,
   ): WebClient =
     builder
       .baseUrl(openRouterApiProperties.baseUrl)
       .filter(openRouterAuthFilter)
+      .filter(openRouterRequestLoggingFilter)
+      .filter(openRouterResponseLoggingFilter)
       .clientConnector(ReactorClientHttpConnector(httpClient()))
       .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
       .build()
