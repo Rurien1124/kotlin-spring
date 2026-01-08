@@ -20,4 +20,8 @@ object Paths {
 
     const val POST_QUESTION = "/{documentId}/question"
   }
+
+  object OpenRouter {
+    const val CHAT_COMPLETIONS = "/chat/completions"
+  }
 }
