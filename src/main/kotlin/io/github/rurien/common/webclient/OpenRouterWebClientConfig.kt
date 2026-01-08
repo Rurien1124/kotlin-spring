@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.client.reactive.ReactorClientHttpConnector
+import org.springframework.web.reactive.function.client.ExchangeFilterFunction
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.netty.http.client.HttpClient
 import java.time.Duration
@@ -16,9 +17,17 @@ class OpenRouterWebClientConfig(
   private val openRouterApiProperties: OpenRouterApiProperties,
 ) {
   @Bean
-  fun openRouterWebClient(builder: WebClient.Builder): WebClient =
+  fun openRouterWebClient(
+    builder: WebClient.Builder,
+    openRouterAuthFilter: ExchangeFilterFunction,
+    openRouterRequestLoggingFilter: ExchangeFilterFunction,
+    openRouterResponseLoggingFilter: ExchangeFilterFunction,
+  ): WebClient =
     builder
       .baseUrl(openRouterApiProperties.baseUrl)
+      .filter(openRouterAuthFilter)
+      .filter(openRouterRequestLoggingFilter)
+      .filter(openRouterResponseLoggingFilter)
       .clientConnector(ReactorClientHttpConnector(httpClient()))
       .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
       .build()
