@@ -16,7 +16,7 @@ class GeminiCommunicator(
 ) : LlmCommunicator {
   override fun summary(chunks: List<String>): String =
     generateContent(
-      prompt = buildPrompt(Prompts.SUMMARY_PROMPT, chunks.toContext()),
+      prompt = buildPrompt(Prompts.Gemini.SUMMARY_PROMPT, chunks.toContext()),
       model = geminiProperties.models.flash,
       generateContentConfig = geminiSummaryContentConfig,
     )
@@ -26,7 +26,7 @@ class GeminiCommunicator(
     question: String,
   ): String =
     generateContent(
-      prompt = buildPrompt(Prompts.ASK_PROMPT, context, question),
+      prompt = buildPrompt(Prompts.Gemini.ASK_PROMPT, context, question),
       model = geminiProperties.models.flashLite,
       generateContentConfig = geminiAskContentConfig,
     )
