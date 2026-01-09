@@ -17,10 +17,14 @@ class OpenRouterCommunicator(
   private val openRouterProperties: OpenRouterProperties,
 ) : LlmCommunicator {
   override fun summary(chunks: List<String>): String =
-    call(
-      model = openRouterProperties.models.nvidiaNemotron,
-      prompt = buildPrompt(Prompts.SUMMARY_PROMPT, chunks.joinToString("\n")),
-    )
+    chunks
+      .chunked(4)
+      .joinToString("\n\n") { batch ->
+        call(
+          model = openRouterProperties.models.nvidiaNemotron,
+          prompt = buildPrompt(Prompts.Nemotron.SUMMARY_PROMPT, batch.toContext()),
+        )
+      }
 
   override fun ask(
     context: String,
@@ -28,7 +32,7 @@ class OpenRouterCommunicator(
   ): String =
     call(
       model = openRouterProperties.models.nvidiaNemotron,
-      prompt = buildPrompt(Prompts.ASK_PROMPT, context, question),
+      prompt = buildPrompt(Prompts.Nemotron.ASK_PROMPT, context, question),
     )
 
   private fun call(
